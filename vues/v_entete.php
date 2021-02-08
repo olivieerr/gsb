@@ -31,7 +31,7 @@
             <?php
             $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
             
-            if ($estConnecte /*$visiteurConnecte*/) {
+            if (/*$estConnecte*/ $visiteurConnecte) {
                 ?>
             <div class="header">
                 <div class="row vertical-align">
@@ -73,7 +73,7 @@
                     </div>
                 </div>
             </div>
-            <?php /*
+            <?php
             } elseif ($comptableConnecte) {
                 ?>
                 <div class="header">
@@ -96,7 +96,7 @@
                             <li <?php if ($uc == 'validerFicheFrais') { ?>class="active"<?php } ?>>
                                 <a href="index.php?uc=gererFrais&action=saisirFrais">
                                     <span class="glyphicon glyphicon-check"></span>
-                                    Valider les fiche de frais
+                                    Valider les fiches de frais
                                 </a>
                             </li>
                             <li <?php if ($uc == 'suiviPaiement') { ?>class="active"<?php } ?>>
@@ -115,7 +115,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>*/ ?>
+            </div>
             <?php
             } else {
                 ?>   
