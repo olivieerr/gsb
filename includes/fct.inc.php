@@ -19,11 +19,37 @@
  *
  * @return vrai ou faux
  */
-function estConnecte()
+function visiteurConnecte()
 {
     return isset($_SESSION['idVisiteur']);
 }
 
+/**
+ * test si un visiteur ou un comptable est connecté
+ * @return vrai 
+ */
+function estConnecte()
+{
+    return isset($_SESSION['idVisiteur']) || isset($_SESSION['idComptable']);
+    /*if (isset($_SESSION['idVisiteur'])/*|| isset ($_SESSION['idComptable'])){
+        return true;
+    }elseif (isset ($_SESSION['idComptable'])) {
+        return true;
+    }else {
+     return false;
+    }*/
+}
+
+//@todo ajouter une nouvelle fonction comptableConnecte
+/**
+ * Test si un quelconque comptable est connécté
+ * 
+ * @return vrai ou faux
+ */
+function comptableConnecte()
+{
+    return isset($_SESSION['idComptable']);
+}
 /**
  * Enregistre dans une variable session les infos d'un visiteur
  *
@@ -33,9 +59,16 @@ function estConnecte()
  *
  * @return null
  */
-function connecter($idVisiteur, $nom, $prenom)
+function connecterVisiteur($idVisiteur, $nom, $prenom)
 {
     $_SESSION['idVisiteur'] = $idVisiteur;
+    $_SESSION['nom'] = $nom;
+    $_SESSION['prenom'] = $prenom;
+}
+
+function connecterComptable($idComptable, $nom, $prenom)
+{
+    $_SESSION['idComptable'] = $idComptable;
     $_SESSION['nom'] = $nom;
     $_SESSION['prenom'] = $prenom;
 }
