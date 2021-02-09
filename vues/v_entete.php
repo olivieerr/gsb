@@ -86,7 +86,7 @@
                         </h1>
                     </div>
                     <div class="col-md-8">
-                        <ul class="nav nav-pills pull-right" role="tablist">
+                        <ul class="nav nav-pills-orange pull-right" role="tablist">
                             <li <?php if (!$uc || $uc == 'accueil') { ?>class="active" <?php } ?>>
                                 <a href="index.php">
                                     <span class="glyphicon glyphicon-home"></span>
@@ -94,7 +94,7 @@
                                 </a>
                             </li>
                             <li <?php if ($uc == 'validerFicheFrais') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=gererFrais&action=saisirFrais">
+                                <a href="index.php?uc=gererFrais&action=saisirFrais"> 
                                     <span class="glyphicon glyphicon-check"></span>
                                     Valider les fiches de frais
                                 </a>

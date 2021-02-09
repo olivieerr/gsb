@@ -3113,6 +3113,63 @@ fieldset[disabled] .btn-default.focus {
   color: #fff;
   background-color: #333;
 }
+.btn-orange {
+  color: #fff;
+  background-color: orange;
+  border-color: #ff9000;
+}
+.btn-orange:focus,
+.btn-orange.focus {
+  color: #fff;
+  background-color: #ff9000;
+  border-color: orange;
+}
+.btn-orange:hover {
+  color: #fff;
+  background-color: #ff9000;
+  border-color: orange;
+}
+.btn-orange:active,
+.btn-orange.active,
+.open > .dropdown-toggle.btn-ornage {
+  color: #fff;
+  background-color: #ff9000;
+  border-color: orange;
+}
+.btn-orange:active:hover,
+.btn-orange.active:hover,
+.open > .dropdown-toggle.btn-ornage:hover,
+.btn-orange:active:focus,
+.btn-orange.active:focus,
+.open > .dropdown-toggle.btn-ornage:focus,
+.btn-ornage:active.focus,
+.btn-orange.active.focus,
+.open > .dropdown-toggle.btn-ornage.focus {
+  color: #fff;
+  background-color: #ff9000;
+  border-color: orange;
+}
+.btn-orange:active,
+.btn-orange.active,
+.open > .dropdown-toggle.btn-ornage {
+  background-image: none;
+}
+.btn-orange.disabled:hover,
+.btn-orange[disabled]:hover,
+fieldset[disabled] .btn-orange:hover,
+.btn-orange.disabled:focus,
+.btn-orange[disabled]:focus,
+fieldset[disabled] .btn-orange:focus,
+.btn-orange.disabled.focus,
+.btn-orange[disabled].focus,
+fieldset[disabled] .btn-ornage.focus {
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-ornage .badge {
+  color: #fff;
+  background-color: #333;
+}
 .btn-primary {
   color: #fff;
   background-color: #337ab7;
@@ -4099,6 +4156,23 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   color: #fff;
   background-color: #337ab7;
 }
+.nav-pills-orange > li {
+  float: left;
+}
+.nav-pills-orange > li > a {
+  border-radius: 4px;
+  color: orange;
+}
+.nav-pills-orange > li + li {
+  margin-left: 2px;
+}
+.nav-pills-orange > li.active > a,
+.nav-pills-orange > li.active > a:hover,
+.nav-pills-orange > li.active > a:focus {
+  color: #fff;
+  background-color: orange;
+}
+
 .nav-stacked > li {
   float: none;
 }
@@ -4946,6 +5020,10 @@ a.badge:focus {
   color: #337ab7;
   background-color: #fff;
 }
+.nav-pills-orange > .active > a > .badge {
+  color: orange;
+  background-color: #fff;
+}
 .list-group-item > .badge {
   float: right;
 }
@@ -4953,6 +5031,9 @@ a.badge:focus {
   margin-right: 5px;
 }
 .nav-pills > li > a > .badge {
+  margin-left: 3px;
+}
+.nav-pills-orange > li > a > .badge {
   margin-left: 3px;
 }
 .jumbotron {
@@ -5789,6 +5870,24 @@ button.list-group-item-danger.active:focus {
 }
 .panel-danger > .panel-footer + .panel-collapse > .panel-body {
   border-bottom-color: #ebccd1;
+}
+.panel-orange {
+  border-color: orange;
+}
+.panel-orange > .panel-heading {
+  color: #fff;
+  background-color: orange;
+  border-color: orange;
+}
+.panel-orange > .panel-heading + .panel-collapse > .panel-body {
+  border-top-color: orange;
+}
+.panel-orange > .panel-heading .badge {
+  color: orange;
+  background-color: #fff;
+}
+.panel-orange > .panel-footer + .panel-collapse > .panel-body {
+  border-bottom-color: orange;
 }
 .embed-responsive {
   position: relative;
@@ -6754,4 +6853,5 @@ button.close {
     display: none !important;
   }
 }
+
 
