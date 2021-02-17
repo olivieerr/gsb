@@ -1,6 +1,6 @@
 <?php
 /**
- * Vue Accueil
+ * Vue Accueil Comptable
  *
  * PHP Version 7
  *
@@ -12,6 +12,8 @@
  * @license   Réseau CERTA
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
+ * modifiée et adaptée par
+ * @author olivier <olivier@site-en-vrac.fr>
  */
 ?>
 <div id="accueil">
@@ -34,7 +36,7 @@
             <div class="panel-body">
                 <div class="row">
                     <div class="col-xs-12 col-md-12">
-                        <a href="index.php?uc=gererFrais&action=saisirFrais"
+                        <a href="index.php?uc=validerFicheFrais&action=selectionnerVisiteur"
                            class="btn btn-info btn-lg" role="button">
                             <span class="glyphicon glyphicon-pencil"></span>
                             <br>Valider les fiches de frais</a>

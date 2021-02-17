@@ -505,4 +505,34 @@ class PdoGsb
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
+    
+    public function getVisiteursNonValides() {
+        
+        // TODO acces BDD pour recuperer les visiteurs dont les fiches n'ont pas été validées
+        
+    }
+    
+    public function getLesVisiteurs() {
+         $requetePrepare = PdoGsb::$monPdo->prepare(
+            'SELECT visiteur.id AS id, visiteur.nom AS nom, '
+            . 'visiteur.prenom AS prenom '
+            . 'FROM visiteur '
+        );
+        //$requetePrepare->bindParam(':unLogin', $login, PDO::PARAM_STR);
+        //$requetePrepare->bindParam(':unMdp', $mdp, PDO::PARAM_STR);
+                
+        $requetePrepare->execute();
+        $lesVisiteurs = array();
+        while ($laLigne = $requetePrepare->fetch()) {
+            $id = $laLigne['id'];
+            $nomVisiteur = $laLigne['nom'];
+            $prenomVisiteur = $laLigne['prenom'];
+            $lesVisiteurs[] = array(
+                'id' => $id,
+                'nom' => $nomVisiteur,
+                'prenom' => $prenomVisiteur
+            );
+        }
+        return $lesVisiteurs;
+    }
 }
