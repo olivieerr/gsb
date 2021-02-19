@@ -11,7 +11,9 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="form-group">
-                    <label for="lstVisiteurs" >Visiteur séléctionné : </label>
+                    <label for="lstVisiteurs" >Visiteur séléctionné : <?php echo $idVisiteur ?></label>
+                    <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">
+                    <?php /*
                     <select id="lstVisiteurs" name="lstVisiteurs">
                         <?php
                         foreach ($lesVisiteurs AS $unVisiteur) {
@@ -32,7 +34,7 @@
                               <option value selected ="<?php echo $id ?>">
                               <?php echo $nom . ' ' . $prenom ?></option>
                               <?php
-                              }*/
+                              }
                               } 
                             ?>
                         </select>
@@ -54,7 +56,15 @@
                                 $mois = $unMois['mois'];
                                 $numAnnee = $unMois['numAnnee'];
                                 $numMois = $unMois['numMois'];
-                                if ($mois == $moisASelectionner) {
+                                if ($mois == $leMois) {
+                                $selected = ' selected';
+                            } else {
+                                $selected = '';
+                            }
+                            ?>
+                            <option value="<?php echo $mois; ?>" <?php echo $selected; ?>>
+                                <?php echo $numMois . '/' . $numAnnee; ?></option>
+                                <?php /*if ($mois == $moisASelectionner) {
                                     ?>
                                     <option selected value="<?php echo $mois ?>">
                                         <?php echo $numMois . '/' . $numAnnee ?> </option>
@@ -64,7 +74,7 @@
                                     <option value="<?php echo $mois ?>">
                                         <?php echo $numMois . '/' . $numAnnee ?> </option>
                                     <?php
-                                }
+                                }*/
                             }
                             ?>    
 

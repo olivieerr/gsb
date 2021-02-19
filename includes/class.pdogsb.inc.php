@@ -451,6 +451,40 @@ class PdoGsb
         }
         return $lesMois;
     }
+    
+    /**
+     * 
+     * retourne les mois pour lesquels le visiteur à une fiche créée
+     * 
+     * @param type $idVisiteur ID du visiteur
+     * 
+     * @return un tableau associatif de clé un mois -aaaamm- et de valeurs
+     *         l'année et le mois correspondant
+     */
+    public function getLesMoisNonValides($idVisiteur) 
+    {
+        $requetePrepare = PdoGSB::$monPdo->prepare(
+            'SELECT fichefrais.mois AS mois FROM fichefrais '
+            . 'WHERE fichefrais.idetat = "CR" AND '
+            . 'fichefrais.idvisiteur = :unIdVisiteur '
+            . 'ORDER BY fichefrais.mois desc'
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $lesMois = array();
+        while ($laLigne = $requetePrepare->fetch()) {
+            $mois = $laLigne['mois'];
+            $numAnnee = substr($mois, 0, 4);
+            $numMois = substr($mois, 4, 2);
+            $lesMois[] = array(
+                'mois' => $mois,
+                'numAnnee' => $numAnnee,
+                'numMois' => $numMois
+            );
+        }
+        return $lesMois;
+        
+    }
 
     /**
      * Retourne les informations d'une fiche de frais d'un visiteur pour un
@@ -534,5 +568,32 @@ class PdoGsb
             );
         }
         return $lesVisiteurs;
+    }
+    
+    public function getLibelleHorsForfait($idFrais) {
+        $requetePrepare = PdoGSB::$monPdo->prepare(
+                'SELECT lignefraishorsforfait.libelle AS libelle '
+                . 'FROM lignefraishorsforfait '
+                . 'WHERE lignefraishorsforfait.id = :unIdFrais '
+                );
+        $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $laLigne = $requetePrepare->fetch();
+        $libelle = $laLigne['libelle'];
+        
+        return $libelle;
+        
+        
+       
+        
+    }
+    
+    public function refuserFrais($idFrais) {
+         $requetePrepare = PdoGSB::$monPdo->prepare(
+            'DELETE FROM lignefraishorsforfait '
+            . 'WHERE lignefraishorsforfait.id = :unIdFrais'
+        );
+        $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
+        $requetePrepare->execute();
     }
 }

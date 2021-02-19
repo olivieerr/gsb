@@ -5,6 +5,7 @@
  * and open the template in the editor.
  */
 ?>
+<?php /*
 <div class="row">
     <div class="row">
         <form class="form-align" action="index.php?uc=validerFicheFrais&action=selectionnerVisiteur" 
@@ -104,4 +105,8 @@
             </fieldset>
         </form>
     </div>
-</div>
+</div> */ ?>
+
+<?php //echo 'comptable : ' .$idComptable . ' idvisiteur : ' . $idVisiteur . ' et le mois : ' . $leMois ?> 
+<?php echo $idFrais . '-> idFrais et '. $leLibelle . ' -> le libelle' ; ?>
+<?php var_dump($leLibelle);?>

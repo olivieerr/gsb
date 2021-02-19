@@ -6,7 +6,9 @@
  */
 ?>
 <div class="row">
+   
     <div class="row">
+        
         <form class="form-align" action="index.php?uc=validerFicheFrais&action=choisirMois" 
               method="post" role="form">
             <div class="col-md-4">
@@ -18,25 +20,22 @@
                             $id = $unVisiteur['id'];
                             $nom = $unVisiteur['nom'];
                             $prenom = $unVisiteur['prenom'];
-                            if ($id == $visiteurASelectionner) {
-                                ?>
-                                <option value selected ="<?php echo $id ?>">
-                                    <?php echo $nom . ' ' . $prenom ?></option>
-                            <?php } else {
-                                ?>
-                                <option value ="<?php echo $id ?>">
-                                    <?php echo $nom . ' ' . $prenom ?></option>  
-                                <?php
+                           if ($id == $idVisiteur) {
+                                $selected = ' selected';
+                            } else {
+                                $selected = '';
                             }
-                        }
-                        ?>
+                            ?>
+                            <option value="<?php echo $id; ?>" <?php echo $selected; ?>>
+                                <?php echo $nom . ' ' . $prenom; ?></option>
+                        <?php } ?>
                     </select>
                 </div>
             </div>
             <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                    role="button">
         </form>
-         <form class="form-align" action="index.php?uc=validerFicheFrais&action=essaiV_ValiderFrais" 
+         <form class="form-align" action="index.php?uc=validerFicheFrais&action=controleEtatFrais" 
               method="post" role="form">
             <div class="col-md-4">
                 <div class="form-group">
@@ -74,9 +73,10 @@
     <?php echo $idVisiteur . ' ' . $leMois ?>
     <h3>Eléments forfaitisés</h3>
     <div class="col-md-4">
-        <form method="post" 
-              action="index.php?uc=gererFrais&action=validerMajFraisForfait" 
+         <form method="post" 
+              action="index.php?uc=validerFicheFrais&action=corrigerFraisForfait" 
               role="form">
+             <?php echo $idVisiteur . ' ' . $leMois ?>
             <fieldset>       
                 <?php
                 foreach ($lesFraisForfait as $unFrais) {

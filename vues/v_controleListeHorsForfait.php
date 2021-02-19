@@ -22,8 +22,8 @@
                     <td> <?php echo $date ?></td>
                     <td> <?php echo $libelle ?></td>
                     <td><?php echo $montant ?></td>
-                    <td><a href="index.php?uc=gererFrais&action=supprimerFrais&idFrais=<?php echo $id ?>" 
-                           onclick="return confirm('Voulez-vous vraiment supprimer ce frais?');">Supprimer ce frais</a></td>
+                    <td><a href="index.php?uc=validerFicheFrais&action=refuserFrais&idFrais=<?php echo $id ?>" 
+                           onclick="return confirm('Voulez-vous vraiment refuser ce frais?');">refuser ce frais</a></td>
                 </tr>
                 <?php
             }
@@ -31,5 +31,12 @@
             </tbody>  
         </table>
     </div>
+    <form method="post" 
+              action="index.php?uc=validerFicheFrais&action=validationDesFrais" 
+              role="form">
+        <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">
+        <input name="leMois" type="hidden" value="<?php echo $leMois ;?>">
+        <button class="btn btn-danger" onclick="return confirm('Voulez-vous valider les frais ?') "type="submit">Valider</button>
+    </form>
 </div>
     
