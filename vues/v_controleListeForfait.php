@@ -1,17 +1,29 @@
+<?php
+/**
+ * 
+ * Page affichant les elements forfaitisés avec possiblité de les corriger
+ * 
+ * PHP version 7.4
+ * 
+ * @category PPE
+ * @package GSB
+ * @author Olivier <olivier@site-en-vrac.fr>
+ * @copyright (c) 2021, Olivier
+ * @version GIT <0>
+ *
+ * 
+ */
+?>
 <div class="row">
-
     <h1 class="comptable">Valider la fiche de frais</h1>
-    <?php echo $idVisiteur . ' ' . $leMois . ' ' .$visiteurASelectionner ?>
+    <h3> Visitueur séléctionné : <em class="comptable"><?php echo $nom . ' ' . $prenom; ?></em> pour le mois de <em class="comptable"><?php echo $moisFr; ?></em></h3>
     <h3>Eléments forfaitisés</h3>
-    
     <div class="col-md-4">
         <form method="post" 
               action="index.php?uc=validerFicheFrais&action=corrigerFraisForfait" 
-              role="form">
-            <?php echo $idVisiteur . ' ' . $leMois; ?>
-            <p>Visiteur séléctionnée : <?php echo $idVisiteur; ?> pour le mois de : <?php echo $leMois ?></p>
+              role="form">       
             <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">
-            <input name="leMois" type="hidden" value="<?php echo $leMois ;?>">
+            <input name="leMois" type="hidden" value="<?php echo $leMois; ?>">
             <fieldset>       
                 <?php
                 foreach ($lesFraisForfait as $unFrais) {
@@ -31,9 +43,7 @@
                 }
                 ?>
                 <button class="btn btn-info" type="submit">Corriger</button>
-                <!--<button class="btn btn-danger" type="reset">Effacer</button>-->
             </fieldset>
         </form>
     </div>
-
 </div>

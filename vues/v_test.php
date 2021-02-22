@@ -107,6 +107,13 @@
     </div>
 </div> */ ?>
 
-<?php //echo 'comptable : ' .$idComptable . ' idvisiteur : ' . $idVisiteur . ' et le mois : ' . $leMois ?> 
-<?php echo $idFrais . '-> idFrais et '. $leLibelle . ' -> le libelle' ; ?>
+<?php echo 'comptable : ' .$idComptable . ' idvisiteur : ' . $idVisiteur . ' et le mois : ' . $leMois . ' / ' ?> 
+<?php echo $idFrais . '-> idFrais et '. $leLibelle . ' -> le libelle / nouveau nb->' . $nouveauNbJustificatifs . ' / ' ; ?>
 <?php var_dump($leLibelle);?>
+<?php echo 'libelle hors forfait : ' . $libelleFraisHorsForfait . ' mois hors forfait : '. $moisFraisHorsForfait . ' idvisiteur horsforfait : ' . $idVisiteurHorsForfait . '\n '; ?>
+<?php var_dump($lesInfos); ?>
+<?php $nouveauMois = $leMois +1;
+echo 'Nouveau mois = ' .$nouveauMois ;?>
+<?php echo ' Vrai ou faux : ' . var_dump($vrai); ?>
+<?php echo 'libelle refuseé -> : ' . $libelleRefuse . '                         ';?>
+<?php var_dump($moisSuivant);?>

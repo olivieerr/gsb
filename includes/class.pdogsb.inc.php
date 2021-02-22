@@ -263,7 +263,7 @@ class PdoGsb
      */
     public function majNbJustificatifs($idVisiteur, $mois, $nbJustificatifs)
     {
-        $requetePrepare = PdoGB::$monPdo->prepare(
+        $requetePrepare = PdoGsb::$monPdo->prepare(
             'UPDATE fichefrais '
             . 'SET nbjustificatifs = :unNbJustificatifs '
             . 'WHERE fichefrais.idvisiteur = :unIdVisiteur '
@@ -291,7 +291,7 @@ class PdoGsb
     {
         $boolReturn = false;
         $requetePrepare = PdoGsb::$monPdo->prepare(
-            'SELECT fichefrais.mois FROM fichefrais '
+            'SELECT fichefrais.mois AS mois FROM fichefrais '
             . 'WHERE fichefrais.mois = :unMois '
             . 'AND fichefrais.idvisiteur = :unIdVisiteur'
         );
@@ -301,6 +301,11 @@ class PdoGsb
         if (!$requetePrepare->fetch()) {
             $boolReturn = true;
         }
+        /*$laLigne = $requetePrepare->fetch();
+        if ($laLigne['mois']== null){
+            $boolReturn = true;
+        }
+        return $laLigne;*/
         return $boolReturn;
     }
 
@@ -570,30 +575,79 @@ class PdoGsb
         return $lesVisiteurs;
     }
     
-    public function getLibelleHorsForfait($idFrais) {
+    public function getLigneHorsForfait($idFrais) {
         $requetePrepare = PdoGSB::$monPdo->prepare(
-                'SELECT lignefraishorsforfait.libelle AS libelle '
+                'SELECT lignefraishorsforfait.idvisiteur AS idvisiteur, '
+                . 'lignefraishorsforfait.mois AS mois, '
+                . 'lignefraishorsforfait.libelle AS libelle '
                 . 'FROM lignefraishorsforfait '
                 . 'WHERE lignefraishorsforfait.id = :unIdFrais '
                 );
         $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
         $requetePrepare->execute();
         $laLigne = $requetePrepare->fetch();
-        $libelle = $laLigne['libelle'];
+        //$libelle = $laLigne['libelle'];
         
-        return $libelle;
-        
-        
-       
+        return $laLigne;
         
     }
     
-    public function refuserFrais($idFrais) {
-         $requetePrepare = PdoGSB::$monPdo->prepare(
-            'DELETE FROM lignefraishorsforfait '
+    public function refuserFrais($libelle, $mois, $idFrais) {
+         $requetePrepare = PdoGsb::$monPdo->prepare(
+            'UPDATE lignefraishorsforfait '
+            . 'SET libelle = :unLibelle, '
+            . 'mois = :unMois '        
             . 'WHERE lignefraishorsforfait.id = :unIdFrais'
         );
+        $requetePrepare->bindParam(':unLibelle', $libelle, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_INT);
         $requetePrepare->bindParam(':unIdFrais', $idFrais, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
+    
+    /*
+     * Permet de créer une nouvelle fiche de frais pour le mois suivant sans cloturer le mois en cours
+     */
+    public function creerLigneFraisSansCloture($idVisiteur, $mois) {
+        
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+            'INSERT INTO fichefrais (idvisiteur,mois,nbjustificatifs,'
+            . 'montantvalide,datemodif,idetat) '
+            . "VALUES (:unIdVisiteur,:unMois,0,0,now(),'CR')"
+        );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $lesIdFrais = $this->getLesIdFrais();
+        foreach ($lesIdFrais as $unIdFrais) {
+            $requetePrepare = PdoGsb::$monPdo->prepare(
+                'INSERT INTO lignefraisforfait (idvisiteur,mois,'
+                . 'idfraisforfait,quantite) '
+                . 'VALUES(:unIdVisiteur, :unMois, :idFrais, 0)'
+            );
+            $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+            $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+            $requetePrepare->bindParam(
+                ':idFrais',
+                $unIdFrais['idfrais'],
+                PDO::PARAM_STR
+            );
+            $requetePrepare->execute();
+        }
+    }
+   
+    public function getNomPrenomVisiteur($idVisiteur) {
+        $requetePrepare = PdoGSB::$monPdo->prepare(
+                'SELECT visiteur.nom AS nom, '
+                . 'visiteur.prenom AS prenom '
+                . 'FROM visiteur '
+                . 'WHERE visiteur.id = :unIdVisiteur '
+                );
+        $requetePrepare->bindParam(':unIdVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $laLigne = $requetePrepare->fetch();
+        
+        return $laLigne;
+    }
+        
 }

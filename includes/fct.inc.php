@@ -280,3 +280,23 @@ function nbErreurs()
         return count($_REQUEST['erreurs']);
     }
 }
+
+function moisVersFrancais($monMois)
+{
+    $annee = substr($monMois, 0, 4);
+    $mois = substr($monMois, -2);
+            
+    //list($annee, $mois) = explode('/', $monMois);
+    $laDate = $mois . '-' . $annee;
+    return $laDate;
+}
+
+function libelleMax($unLibelle){
+    
+    $longueur = strlen($unLibelle);
+    if ($longueur > 100){
+        $libelleMax = substr($unLibelle, 0, 100);
+        return $libelleMax ;
+    }
+    return $unLibelle;
+}
