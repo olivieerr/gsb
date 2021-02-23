@@ -107,7 +107,7 @@
     </div>
 </div> */ ?>
 
-<?php echo 'comptable : ' .$idComptable . ' idvisiteur : ' . $idVisiteur . ' et le mois : ' . $leMois . ' / ' ?> 
+<?php /*echo 'comptable : ' .$idComptable . ' idvisiteur : ' . $idVisiteur . ' et le mois : ' . $leMois . ' / ' ?> 
 <?php echo $idFrais . '-> idFrais et '. $leLibelle . ' -> le libelle / nouveau nb->' . $nouveauNbJustificatifs . ' / ' ; ?>
 <?php var_dump($leLibelle);?>
 <?php echo 'libelle hors forfait : ' . $libelleFraisHorsForfait . ' mois hors forfait : '. $moisFraisHorsForfait . ' idvisiteur horsforfait : ' . $idVisiteurHorsForfait . '\n '; ?>
@@ -116,4 +116,6 @@
 echo 'Nouveau mois = ' .$nouveauMois ;?>
 <?php echo ' Vrai ou faux : ' . var_dump($vrai); ?>
 <?php echo 'libelle refuseé -> : ' . $libelleRefuse . '                         ';?>
-<?php var_dump($moisSuivant);?>
+<?php var_dump($moisSuivant);*/
+var_dump($totalHorsForfait);
+echo $totalForfait . ' + ' . $totalHorsForfait . ' = ' . $totalValidation; ?>

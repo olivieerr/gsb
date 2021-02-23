@@ -57,7 +57,7 @@ case 'corrigerFraisForfait':
     $lesFrais = filter_input(INPUT_POST, 'lesFrais', FILTER_DEFAULT, FILTER_FORCE_ARRAY);
     if (lesQteFraisValides($lesFrais)) {
         $pdo->majFraisForfait($idVisiteur, $leMois, $lesFrais);
-        include 'vues/v_validation.php';
+        include 'vues/v_correction.php';
     } else {
         ajouterErreur('Les valeurs des frais doivent être numériques');
         include 'vues/v_erreurs.php';
@@ -71,8 +71,23 @@ case 'corrigerFraisForfait':
     
 case 'validationDesFrais' :
     $idVisiteur = filter_input(INPUT_POST, 'leVisiteur', FILTER_SANITIZE_STRING);
-    $leMois = filter_input(INPUT_POST, 'leMois', FILTER_SANITIZE_STRING); 
-    include 'vues/v_test.php';
+    $leMois = filter_input(INPUT_POST, 'leMois', FILTER_SANITIZE_STRING);
+    $nomPrenom = $pdo->getNomPrenomVisiteur($idVisiteur);
+    $nom = $nomPrenom['nom'];
+    $prenom = $nomPrenom['prenom'];
+    $moisFr = moisVersFrancais($leMois);
+    $etp = $pdo->calculFraisForfaitEtape($idVisiteur, $leMois); 
+    $km = $pdo->calculFraisForfaitKm($idVisiteur, $leMois);
+    $nui = $pdo->calculFraisForfaitNuit($idVisiteur, $leMois);
+    $rep = $pdo->calculFraisForfaitRepas($idVisiteur, $leMois);
+    $totalForfait = $etp + $km + $nui + $rep;
+    $totalHorsForfait = $pdo->calculFraisHorsForfait($idVisiteur, $leMois);
+    $totalValidation = $totalForfait + $totalHorsForfait;
+    $pdo->validationFicheFrais($idVisiteur, $leMois, $totalValidation);
+    include 'vues/v_validation.php';
+    include 'vues/v_resumeValidation.php';
+    include 'vues/v_accueilComptable.php';
+    
     break;
 
 case 'majNbJustificatifs':    

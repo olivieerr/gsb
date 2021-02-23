@@ -5,7 +5,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 ?>
 <div class="alert alert-success" role="alert">
-    <p>Validation effectuée</p>
+    <p>Correction(s) effectuée(s)</p>
 </div>
+    
