@@ -55,7 +55,7 @@
                                 </a>
                             </li>
                             <li <?php if ($uc == 'suiviPaiement') { ?>class="active"<?php } ?>>
-                                <a href="index.php?uc=etatFrais&action=selectionnerMois">
+                                <a href="index.php?uc=suiPaiement&action=suiviFicheFrais">
                                     <span class="glyphicon glyphicon-euro"></span>
                                     Suivre le paiment des fiches de frais
                                 </a>

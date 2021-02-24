@@ -76,17 +76,18 @@ case 'validationDesFrais' :
     $nom = $nomPrenom['nom'];
     $prenom = $nomPrenom['prenom'];
     $moisFr = moisVersFrancais($leMois);
-    $etp = $pdo->calculFraisForfaitEtape($idVisiteur, $leMois); 
+    $totalForfait = $pdo->calculFraisForfait($idVisiteur, $leMois);
+    /*$etp = $pdo->calculFraisForfaitEtape($idVisiteur, $leMois); 
     $km = $pdo->calculFraisForfaitKm($idVisiteur, $leMois);
     $nui = $pdo->calculFraisForfaitNuit($idVisiteur, $leMois);
     $rep = $pdo->calculFraisForfaitRepas($idVisiteur, $leMois);
-    $totalForfait = $etp + $km + $nui + $rep;
+    $totalForfait = $etp + $km + $nui + $rep;*/
     $totalHorsForfait = $pdo->calculFraisHorsForfait($idVisiteur, $leMois);
     $totalValidation = $totalForfait + $totalHorsForfait;
     $pdo->validationFicheFrais($idVisiteur, $leMois, $totalValidation);
-    include 'vues/v_validation.php';
-    include 'vues/v_resumeValidation.php';
+    include 'vues/v_validation.php';    
     include 'vues/v_accueilComptable.php';
+    //include 'vues/v_test.php';
     
     break;
 

@@ -13,5 +13,5 @@
         <li>Mois concerné : <?php echo $moisFr; ?></li>
         <li>Montant validé : <?php echo $totalValidation; ?>    
     </ul>
-    
+    <
 </div>

@@ -117,5 +117,45 @@ echo 'Nouveau mois = ' .$nouveauMois ;?>
 <?php echo ' Vrai ou faux : ' . var_dump($vrai); ?>
 <?php echo 'libelle refuseé -> : ' . $libelleRefuse . '                         ';?>
 <?php var_dump($moisSuivant);*/
-var_dump($totalHorsForfait);
-echo $totalForfait . ' + ' . $totalHorsForfait . ' = ' . $totalValidation; ?>
+var_dump($lesLignes);
+//echo $totalForfait . ' + ' . $totalHorsForfait . ' = ' . $totalValidation; ?>
+<div class="row">
+    <div class="panel panel-orange">
+        <div class="panel-heading">Liste des fiches de frais validées</div>
+        <table class="table table-bordered table-responsive">
+            <thead>
+                <tr>
+                    <th class="date">mois</th>
+                    <th class="libelle">Visiteurs</th>  
+                    <th class="montant">Montant validé</th> 
+                    <th class="libelle">Justificatifs</th>
+                    <th colspan="date">derniere modification</th>
+                    <th class="action">&nbsp;</th> 
+                </tr>
+            </thead>  
+            <tbody>
+<?php
+foreach ($lesLignes as $uneLigne) {
+    $idVisiteur = $uneLigne['idvisiteur'];
+    $mois = $uneLigne['mois'];
+    $nom = htmlspecialchars($uneLigne['nom']);
+    $prenom = htmlspecialchars($uneLigne['prenom']);
+    $montant = $uneLigne['total'];
+    $nbJustificatifs = $uneLigne['justificatifs'];
+    $modif = $uneLigne['modification'];
+    ?>           
+                    <tr>
+                        <td> <?php echo $mois ?></td>
+                        <td> <?php echo $nom . ' ' . $prenom ?></td>
+                        <td> <?php echo $montant ?></td>
+                        <td> <?php echo $nbJustificatifs ?></td>
+                        <td> <?php echo $modif ?></td>
+                        <td><a href="index.php?uc=validerFicheFrais&action=refuserFrais&idFrais=<?php echo $idVisiteur ?>">Voir cette fiche</a></td>
+                    </tr>
+    <?php
+}
+?>
+            </tbody>  
+        </table>
+    </div> 
+</div>

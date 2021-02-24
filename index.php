@@ -46,7 +46,7 @@ switch ($uc) {
     case 'validerFicheFrais' :
         include 'controleurs/c_validerFicheFrais.php';
         break;
-    case 'suivipaiement' :
+    case 'suiviPaiement' :
         include 'controleurs/c_suiviPaiement.php';
         break;
     case 'deconnexion':

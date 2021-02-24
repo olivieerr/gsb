@@ -7,5 +7,5 @@
  */
 ?>
 <div class="alert alert-success" role="alert">
-    <p>Validation effectuée</p>
+    <p>Fiche validée</p>
 </div>

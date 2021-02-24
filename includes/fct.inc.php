@@ -287,7 +287,7 @@ function moisVersFrancais($monMois)
     $mois = substr($monMois, -2);
             
     //list($annee, $mois) = explode('/', $monMois);
-    $laDate = $mois . '-' . $annee;
+    $laDate = $mois . '/' . $annee;
     return $laDate;
 }
 

@@ -725,5 +725,50 @@ class PdoGsb {
         $requetePrepare->execute();
         
     }
+    
+    public function calculFraisForfait($idVisiteur, $mois){
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+                'SELECT fraisforfait.montant AS montant, '
+                . 'lignefraisforfait.quantite AS quantite '
+                . 'FROM lignefraisforfait JOIN fraisforfait ON fraisforfait.id = lignefraisforfait.idfraisforfait '
+                . 'WHERE idVisiteur = :unVisiteur AND mois = :unMois'
+        );
+        $requetePrepare->bindParam(':unVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        $lesFrais = $requetePrepare->fetchAll();
+        for ($i = 0; $i < count($lesFrais); $i++){
+            $ligne = $lesFrais[$i]['quantite'] * $lesFrais[$i]['montant'];
+            $total += $ligne;
+            
+            
+        }
+        
+        return $total;
+    }
+    
+    public function getFichesValides() {
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+                'SELECT fichefrais.idvisiteur AS idvisiteur, '
+                . 'visiteur.nom AS nom, '
+                . 'visiteur.prenom AS prenom, '
+                . 'fichefrais.mois AS mois, '
+                . 'fichefrais.nbjustificatifs AS justificatifs, '
+                . 'fichefrais.montantvalide AS total, '
+                . 'fichefrais.datemodif AS modification '
+                . 'FROM fichefrais JOIN visiteur ON fichefrais.idvisiteur = visiteur.id '
+                . 'WHERE fichefrais.idetat = "VA" '
+                . 'ORDER BY mois DESC'
+                );
+        $requetePrepare->execute();
+        $lesLignes = $requetePrepare->fetchAll();
+        for ($i = 0; $i < count($lesLignes); $i++){
+            $date = $lesLignes[$i]['mois'];
+            $modif = $lesLignes[$i]['modification'];
+            $lesLignes[$i]['mois'] = moisVersFrancais($date);
+            $lesLignes[$i]['modification'] = dateAnglaisVersFrancais($modif);
+        }
+        return $lesLignes;
+    }
 
 }
