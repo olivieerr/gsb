@@ -180,6 +180,7 @@ class PdoGsb {
         $requetePrepare = PdoGSB::$monPdo->prepare(
                 'SELECT fraisforfait.id as idfrais, '
                 . 'fraisforfait.libelle as libelle, '
+                . 'fraisforfait.montant as montant, '
                 . 'lignefraisforfait.quantite as quantite '
                 . 'FROM lignefraisforfait '
                 . 'INNER JOIN fraisforfait '
@@ -522,11 +523,7 @@ class PdoGsb {
         $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
         $requetePrepare->execute();
     }
-
-    public function getVisiteursNonValides() {
-
-        // TODO acces BDD pour recuperer les visiteurs dont les fiches n'ont pas été validées
-    }
+  
 
     public function getLesVisiteurs() {
         $requetePrepare = PdoGsb::$monPdo->prepare(
@@ -625,76 +622,7 @@ class PdoGsb {
         $laLigne = $requetePrepare->fetch();
 
         return $laLigne;
-    }
-
-    public function CalculFraisForfaitEtape($idVisiteur, $mois) {
-
-        //calcul des frais "forfait etape" (ETP)
-        $requetePrepare = PdoGsb::$monPdo->prepare(
-                'SELECT fraisforfait.montant AS montant, '
-                . 'lignefraisforfait.quantite AS quantite '
-                . 'FROM lignefraisforfait JOIN fraisforfait ON fraisforfait.id = lignefraisforfait.idfraisforfait '
-                . 'WHERE idVisiteur = :unVisiteur AND mois = :unMois AND idfraisforfait = "ETP"'
-        );
-        $requetePrepare->bindParam(':unVisiteur', $idVisiteur, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
-        $requetePrepare->execute();
-        $lesFraisETP = $requetePrepare->fetch();
-        $totalETP = $lesFraisETP['montant'] * $lesFraisETP['quantite'];
-        
-        return $totalETP;
-    }
-
-    public function calculFraisForfaitKm($idVisiteur, $mois) {
-        //calcul des frais kilometrique (KM)
-        $requetePrepare = PdoGsb::$monPdo->prepare(
-                'SELECT fraisforfait.montant AS montant, '
-                . 'lignefraisforfait.quantite AS quantite '
-                . 'FROM lignefraisforfait JOIN fraisforfait ON fraisforfait.id = lignefraisforfait.idfraisforfait '
-                . 'WHERE idVisiteur = :unVisiteur AND mois = :unMois AND idfraisforfait = "KM"'
-        );
-        $requetePrepare->bindParam(':unVisiteur', $idVisiteur, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
-        $requetePrepare->execute();
-        $lesFraisKM = $requetePrepare->fetch();
-        $totalKM = $lesFraisKM['montant'] * $lesFraisKM['quantite'];
-
-        return $totalKM;
-    }
-
-    public function calculFraisForfaitNuit($idVisiteur, $mois) {
-        //calcul des nuits d'hotel (NUI)
-        $requetePrepare = PdoGsb::$monPdo->prepare(
-                'SELECT fraisforfait.montant AS montant, '
-                . 'lignefraisforfait.quantite AS quantite '
-                . 'FROM lignefraisforfait JOIN fraisforfait ON fraisforfait.id = lignefraisforfait.idfraisforfait '
-                . 'WHERE idVisiteur = :unVisiteur AND mois = :unMois AND idfraisforfait = "NUI"'
-        );
-        $requetePrepare->bindParam(':unVisiteur', $idVisiteur, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
-        $requetePrepare->execute();
-        $lesFraisNUI = $requetePrepare->fetch();
-        $totalNUI = $lesFraisNUI['montant'] * $lesFraisNUI['quantite'];
-        
-        return $totalNUI;
-    }
-
-    public function calculFraisForfaitRepas($idVisiteur, $mois) {
-        //Calcul des frais de repas au restaurant (REP)
-        $requetePrepare = PdoGsb::$monPdo->prepare(
-                'SELECT fraisforfait.montant AS montant, '
-                . 'lignefraisforfait.quantite AS quantite '
-                . 'FROM lignefraisforfait JOIN fraisforfait ON fraisforfait.id = lignefraisforfait.idfraisforfait '
-                . 'WHERE idVisiteur = :unVisiteur AND mois = :unMois AND idfraisforfait = "REP"'
-        );
-        $requetePrepare->bindParam(':unVisiteur', $idVisiteur, PDO::PARAM_STR);
-        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
-        $requetePrepare->execute();
-        $lesFraisREP = $requetePrepare->fetch();
-        $totalREP = $lesFraisREP['montant'] * $lesFraisREP['quantite'];
-        
-        return $totalREP;
-    }
+    }   
 
     public function calculFraisHorsForfait($idVisiteur, $mois) {
         $requetePrepare = PdoGsb::$monPdo->prepare(
@@ -747,7 +675,7 @@ class PdoGsb {
         return $total;
     }
     
-    public function getFichesValides() {
+    public function getFichesValidees() {
         $requetePrepare = PdoGsb::$monPdo->prepare(
                 'SELECT fichefrais.idvisiteur AS idvisiteur, '
                 . 'visiteur.nom AS nom, '
@@ -769,6 +697,19 @@ class PdoGsb {
             $lesLignes[$i]['modification'] = dateAnglaisVersFrancais($modif);
         }
         return $lesLignes;
+    }
+    
+    public function miseEnPaiement($idVisiteur, $mois) {
+        $requetePrepare = PdoGsb::$monPdo->prepare(
+                'UPDATE fichefrais '
+                . 'SET datemodif = now(), '
+                . 'idetat = "RB" '
+                . 'WHERE idvisiteur = :unVisiteur AND mois = :unMois'
+                );
+        $requetePrepare->bindParam(':unVisiteur', $idVisiteur, PDO::PARAM_STR);
+        $requetePrepare->bindParam(':unMois', $mois, PDO::PARAM_STR);
+        $requetePrepare->execute();
+        
     }
 
 }

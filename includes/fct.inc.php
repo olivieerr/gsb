@@ -291,6 +291,17 @@ function moisVersFrancais($monMois)
     return $laDate;
 }
 
+function moisVersAnglais($monMois)
+{
+    $mois = substr($monMois, 0, 2);
+    $annee = substr($monMois, -4);
+    
+            
+    //list($annee, $mois) = explode('/', $monMois);
+    $laDate = $annee . $mois;
+    return $laDate;
+}
+
 function libelleMax($unLibelle){
     
     $longueur = strlen($unLibelle);

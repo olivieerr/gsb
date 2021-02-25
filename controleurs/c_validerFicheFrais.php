@@ -35,7 +35,7 @@ case 'choisirMois' :
 case 'controleEtatFrais':   
     $idVisiteur = filter_input(INPUT_POST, 'leVisiteur', FILTER_SANITIZE_STRING);        
     $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_STRING);    
-    $lesMois = $pdo->getLesMoisNonValides($idVisiteur);     
+    //$lesMois = $pdo->getLesMoisNonValides($idVisiteur);     
     $nomPrenom = $pdo->getNomPrenomVisiteur($idVisiteur);
     $nom = $nomPrenom['nom'];
     $prenom = $nomPrenom['prenom'];
@@ -86,7 +86,7 @@ case 'validationDesFrais' :
     $totalValidation = $totalForfait + $totalHorsForfait;
     $pdo->validationFicheFrais($idVisiteur, $leMois, $totalValidation);
     include 'vues/v_validation.php';    
-    include 'vues/v_accueilComptable.php';
+    include 'vues/v_accueil.php';
     //include 'vues/v_test.php';
     
     break;
