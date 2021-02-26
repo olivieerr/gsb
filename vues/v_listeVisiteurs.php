@@ -15,10 +15,11 @@
  */
 ?>
 <div class="row">
-    <form class="form-align" action="index.php?uc=validerFicheFrais&action=choisirMois" 
+    <div class="col-md-4">
+    <form action="index.php?uc=validerFicheFrais&action=choisirMois" 
           method="post" role="form">
-        <div class="row">
-            <div class="col-md-4">
+        
+            
                 <div class="form-group">
                     <label for="lstVisiteurs" >Choisir le visiteur : </label>
                     <select id="lstVisiteurs" name="lstVisiteurs">
@@ -41,11 +42,11 @@
                         ?>
                     </select>
                 </div>
-            </div>
+           
 
             <input id="ok" type="submit" value="Valider" class="btn btn-success" 
                    role="button">
-        </div>
+        
     </form>
-
+ </div>
 </div>

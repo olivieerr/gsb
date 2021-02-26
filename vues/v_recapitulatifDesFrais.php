@@ -14,15 +14,9 @@
  * 
  */
 ?>
-<div class="row">
-    <h1 class="comptable">Fiche de frais validée</h1>
-    <?php var_dump($idVisiteur); ?>
-    <?php echo $idVisiteur; ?>
-    <?php echo $mois; ?>
+<div class="row">   
     <h3> Visitueur séléctionné : <em class="comptable"><?php echo $nom . ' ' . $prenom; ?></em> pour le mois de <em class="comptable"><?php echo $moisFr; ?></em></h3>
-
-    <div class="col-md-4">  
-
+    <div class="col-md-4">
         <h3>Recapitulatif :</h3>
         <h4>Frais forfait</h4>
         <?php
@@ -51,8 +45,7 @@
                 <tr>
                     <th class="date">Date</th>
                     <th class="libelle">Libellé</th>  
-                    <th class="montant">Montant</th>  
-                    <th class="action">&nbsp;</th> 
+                    <th class="montant">Montant</th>                      
                 </tr>
             </thead>  
             <tbody>
@@ -82,6 +75,6 @@
           role="form">                       
         <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">
         <input name="leMois" type="hidden" value="<?php echo $mois; ?>">                 
-        <button class="btn btn-info" type="submit">Consulter</button>
+        <button class="btn btn-info" type="submit">Confirmer</button>
     </form>
 </div>

@@ -15,7 +15,7 @@
  */
 ?>
 <div class="row">
-    <h1 class="comptable">Valider la fiche de frais</h1>
+    <h2 class="comptable">Valider la fiche de frais</h2>
     <h3> Visitueur séléctionné : <em class="comptable"><?php echo $nom . ' ' . $prenom; ?></em> pour le mois de <em class="comptable"><?php echo $moisFr; ?></em></h3>
     <h3>Eléments forfaitisés</h3>
     <div class="col-md-4">

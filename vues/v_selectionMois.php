@@ -15,43 +15,35 @@
  */
 ?>
 <div class="row">
-    <form class="form-align" action="index.php?uc=validerFicheFrais&action=controleEtatFrais" 
-          method="post" role="form">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="lstVisiteurs" >Visiteur séléctionné : <?php echo $nom . ' ' . $prenom; ?></label>
-                    <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">                   
-                </div>
-            </div>
-        </div>           
-        <div class="row">
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="lstMois">Choisir le mois : </label>                        
-                    <select id="lstMois" name="lstMois">
-                        <?php
-                        foreach ($lesMois as $unMois) {
-                            $mois = $unMois['mois'];
-                            $numAnnee = $unMois['numAnnee'];
-                            $numMois = $unMois['numMois'];
-                            if ($mois == $leMois) {
-                                $selected = ' selected';
-                            } else {
-                                $selected = '';
-                            }
-                            ?>
-                            <option value="<?php echo $mois; ?>" <?php echo $selected; ?>>
-                                <?php echo $numMois . '/' . $numAnnee; ?></option>
-                            <?php
+    <div class="col-md-4">
+        <form action="index.php?uc=validerFicheFrais&action=controleEtatFrais" 
+              method="post" role="form">
+            <div class="form-group">
+                <label for="lstVisiteurs" >Visiteur séléctionné : <?php echo $nom . ' ' . $prenom; ?></label><br>
+                <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">       
+                <label for="lstMois">Choisir le mois : </label>                        
+                <select id="lstMois" name="lstMois">
+                    <?php
+                    foreach ($lesMois as $unMois) {
+                        $mois = $unMois['mois'];
+                        $numAnnee = $unMois['numAnnee'];
+                        $numMois = $unMois['numMois'];
+                        if ($mois == $leMois) {
+                            $selected = ' selected';
+                        } else {
+                            $selected = '';
                         }
                         ?>
-                    </select>
-                </div>
-                <input id="ok" type="submit" value="Valider" class="btn btn-success" 
-                       role="button">  
+                        <option value="<?php echo $mois; ?>" <?php echo $selected; ?>>
+                            <?php echo $numMois . '/' . $numAnnee; ?></option>
+                        <?php
+                    }
+                    ?>
+                </select>
             </div>
-        </div>
-    </form>
+            <input id="ok" type="submit" value="Valider" class="btn btn-success" 
+                   role="button"> 
+        </form>
+    </div>
 </div>
 

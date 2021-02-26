@@ -21,11 +21,11 @@
         <table class="table table-bordered table-responsive">
             <thead>
                 <tr>
-                    <th class="date">mois</th>
+                    <th class="date">Mois</th>
                     <th class="libelle">Visiteurs</th>  
                     <th class="montant">Montant validé</th> 
                     <th class="libelle">Justificatifs</th>
-                    <th colspan="date">derniere modification</th>
+                    <th colspan="date">Dernière modification</th>
                     <th class="action">&nbsp;</th> 
                 </tr>
             </thead>  

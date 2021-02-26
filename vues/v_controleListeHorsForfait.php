@@ -49,7 +49,8 @@ foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
 ?>
             </tbody>  
         </table>
-    </div>    
+    </div> 
+</div>
     <div class="row">
         <form class="form-align" method="post" 
               action="index.php?uc=validerFicheFrais&action=majNbJustificatifs" 
@@ -63,11 +64,10 @@ foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
                    size="2" maxlength="2" 
                    value="<?php echo $nbJustificatifs; ?>">
             <button class="btn btn-success" type="submit">Mettre à jour</button>            
-        </form>       
-    </div>    
-    <hr> 
-    <div class="row">
-        <div class="col-md-1">
+        </form>  
+        <hr>
+    </div>  
+  <div class="row">      
             <form method="post" 
                   action="index.php?uc=validerFicheFrais&action=validationDesFrais" 
                   role="form">
@@ -75,13 +75,12 @@ foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
                 <input name="leMois" type="hidden" value="<?php echo $leMois; ?>">
                 <button class="btn btn-info" onclick="return confirm('Voulez-vous valider les frais ?')"type="submit">Valider</button>
             </form>
-        </div>
-        <div class="col-md-1">
+      
+        
             <form method="post" 
                   action="index.php?uc=validerFicheFrais&action=selectionnerVisiteur" 
                   role="form">
                 <button class="btn btn-success" type="submit">Annuler</button>
             </form>
-        </div>           
+      <br><br>                
     </div>    
-</div>
