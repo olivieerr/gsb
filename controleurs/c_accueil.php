@@ -14,10 +14,8 @@
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
 
-if (/*$visiteurConnecte*/ $estConnecte) {
+if ($estConnecte) {
     include 'vues/v_accueil.php';
-}/* elseif ($comptableConnecte) {
-    include 'vues/v_accueil.php';
-}*/ else {
+} else {
     include 'vues/v_connexion.php';
 }

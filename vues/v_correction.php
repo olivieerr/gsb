@@ -1,11 +1,18 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * Alerte correction(s) effectuée(s)
+ * 
+ * PHP version 7.4
+ * 
+ * @category PPE
+ * @package GSB
+ * @author Olivier <olivier@site-en-vrac.fr>
+ * @copyright (c) 2021, Olivier
+ * @version GIT <1>
+ *
+ * 
  */
-
 ?>
 <div class="alert alert-success" role="alert">
     <p>Correction(s) effectuée(s)</p>

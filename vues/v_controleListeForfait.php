@@ -1,7 +1,7 @@
 <?php
 /**
  * 
- * Page affichant les elements forfaitisés avec possiblité de les corriger
+ * Page affichant les elements forfaitisés et les corriger le cas échéant
  * 
  * PHP version 7.4
  * 
@@ -9,7 +9,7 @@
  * @package GSB
  * @author Olivier <olivier@site-en-vrac.fr>
  * @copyright (c) 2021, Olivier
- * @version GIT <0>
+ * @version GIT <1>
  *
  * 
  */

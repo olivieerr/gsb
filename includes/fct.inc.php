@@ -281,27 +281,43 @@ function nbErreurs()
     }
 }
 
+/**
+ * Transforme un mois sous forme aaaamm en mois mm/aaaa
+ * 
+ * @param String $monMois
+ * 
+ * @return String mois sous forme mm/aaaa
+ */
 function moisVersFrancais($monMois)
 {
     $annee = substr($monMois, 0, 4);
     $mois = substr($monMois, -2);
             
-    //list($annee, $mois) = explode('/', $monMois);
     $laDate = $mois . '/' . $annee;
     return $laDate;
 }
 
+/**
+ * Transforme un mois sous forme mm/aaaa en aaaamm
+ * 
+ * @param String $monMois
+ * @return String mois sous la forme aaaamm
+ */
 function moisVersAnglais($monMois)
 {
     $mois = substr($monMois, 0, 2);
     $annee = substr($monMois, -4);
-    
-            
-    //list($annee, $mois) = explode('/', $monMois);
     $laDate = $annee . $mois;
     return $laDate;
 }
 
+/**
+ * Permet de limiter le nombre de caractere d'un libelle à maximum 100 caractères
+ * 
+ * @param String $unLibelle
+ * 
+ * @return String une chaine qui aura une longueur maximum de 100 caractères 
+ */
 function libelleMax($unLibelle){
     
     $longueur = strlen($unLibelle);

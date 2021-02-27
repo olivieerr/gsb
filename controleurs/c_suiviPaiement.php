@@ -10,7 +10,7 @@
  * @package GSB
  * @author Olivier <olivier@site-en-vrac.fr>
  * @copyright (c) 2021, Olivier
- * @version GIT <0>
+ * @version GIT <1>
  *
  * 
  */
@@ -23,9 +23,7 @@ switch ($action) {
         include 'vues/v_listeFraisValides.php';
         break;
     
-    case 'voirFicheFrais':
-        //$idVisiteur = filter_input(INPUT_GET, 'visiteur', FILTER_SANITIZE_STRING);
-        //$mois = filter_input(INPUT_GET, 'mois', FILTER_SANITIZE_STRING);
+    case 'voirFicheFrais':        
         $idVisiteur = filter_input(INPUT_POST, 'leVisiteur', FILTER_SANITIZE_STRING);
         $mois = filter_input(INPUT_POST, 'leMois', FILTER_SANITIZE_STRING);
         $nomPrenom = $pdo->getNomPrenomVisiteur($idVisiteur);
@@ -45,8 +43,5 @@ switch ($action) {
         include 'vues/v_validation.php';
         include 'vues/v_accueil.php';
         include 'vues/v_test.php';
-        break;
-        
-        
-        
+        break;           
 }

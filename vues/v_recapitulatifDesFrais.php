@@ -53,8 +53,7 @@
                 foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
                     $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
                     $date = $unFraisHorsForfait['date'];
-                    $montant = $unFraisHorsForfait['montant'];
-                    //$id = $unFraisHorsForfait['id'];
+                    $montant = $unFraisHorsForfait['montant'];                   
                     ?>           
                     <tr>
                         <td> <?php echo $date ?></td>

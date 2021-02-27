@@ -9,7 +9,7 @@
  * @package GSB
  * @author Olivier <olivier@site-en-vrac.fr>
  * @copyright (c) 2021, Olivier
- * @version GIT <0>
+ * @version GIT <1>
  *
  * 
  */

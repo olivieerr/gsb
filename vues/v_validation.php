@@ -1,9 +1,17 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * 
+ * Alerte : validation effectuée
+ * 
+ * PHP version 7.4
+ * 
+ * @category PPE
+ * @package GSB
+ * @author Olivier <olivier@site-en-vrac.fr>
+ * @copyright (c) 2021, Olivier
+ * @version GIT <0>
+ *
+ * 
  */
 ?>
 <div class="alert alert-success" role="alert">

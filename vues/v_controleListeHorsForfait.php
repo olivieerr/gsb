@@ -11,7 +11,7 @@
  * @package GSB
  * @author Olivier <olivier@site-en-vrac.fr>
  * @copyright (c) 2021, Olivier
- * @version GIT <0>
+ * @version GIT <1>
  *
  * 
  */ ?>
@@ -30,13 +30,13 @@
                 </tr>
             </thead>  
             <tbody>
-<?php
-foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
-    $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
-    $date = $unFraisHorsForfait['date'];
-    $montant = $unFraisHorsForfait['montant'];
-    $id = $unFraisHorsForfait['id'];
-    ?>           
+                <?php
+                foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
+                    $libelle = htmlspecialchars($unFraisHorsForfait['libelle']);
+                    $date = $unFraisHorsForfait['date'];
+                    $montant = $unFraisHorsForfait['montant'];
+                    $id = $unFraisHorsForfait['id'];
+                    ?>           
                     <tr>
                         <td> <?php echo $date ?></td>
                         <td> <?php echo $libelle ?></td>
@@ -44,43 +44,41 @@ foreach ($lesFraisHorsForfait as $unFraisHorsForfait) {
                         <td><a href="index.php?uc=validerFicheFrais&action=refuserFrais&idFrais=<?php echo $id ?>" 
                                onclick="return confirm('Voulez-vous vraiment refuser ce frais?');">refuser ce frais</a></td>
                     </tr>
-    <?php
-}
-?>
+                    <?php
+                }
+                ?>
             </tbody>  
         </table>
     </div> 
 </div>
-    <div class="row">
-        <form class="form-align" method="post" 
-              action="index.php?uc=validerFicheFrais&action=majNbJustificatifs" 
-              role="form">
+<div class="row">
+    <form class="form-align" method="post" 
+          action="index.php?uc=validerFicheFrais&action=majNbJustificatifs" 
+          role="form">
 
-            <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">
-            <input name="leMois" type="hidden" value="<?php echo $leMois; ?>">
-            <label for="nouveauNbJustificatifs" >Nombre de justificartif reçu :</label>
+        <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">
+        <input name="leMois" type="hidden" value="<?php echo $leMois; ?>">
+        <label for="nouveauNbJustificatifs" >Nombre de justificartif reçu :</label>
 
-            <input type="text" id="nouveauNbJustificatifs" name="nouveauNbJustificatifs" 
-                   size="2" maxlength="2" 
-                   value="<?php echo $nbJustificatifs; ?>">
-            <button class="btn btn-success" type="submit">Mettre à jour</button>            
-        </form>  
-        <hr>
-    </div>  
-  <div class="row">      
-            <form method="post" 
-                  action="index.php?uc=validerFicheFrais&action=validationDesFrais" 
-                  role="form">
-                <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">
-                <input name="leMois" type="hidden" value="<?php echo $leMois; ?>">
-                <button class="btn btn-info" onclick="return confirm('Voulez-vous valider les frais ?')"type="submit">Valider</button>
-            </form>
-      
-        
-            <form method="post" 
-                  action="index.php?uc=validerFicheFrais&action=selectionnerVisiteur" 
-                  role="form">
-                <button class="btn btn-success" type="submit">Annuler</button>
-            </form>
-      <br><br>                
-    </div>    
+        <input type="text" id="nouveauNbJustificatifs" name="nouveauNbJustificatifs" 
+               size="2" maxlength="2" 
+               value="<?php echo $nbJustificatifs; ?>">
+        <button class="btn btn-success" type="submit">Mettre à jour</button>            
+    </form>  
+    <hr>
+</div>  
+<div class="row">      
+    <form method="post" 
+          action="index.php?uc=validerFicheFrais&action=validationDesFrais" 
+          role="form">
+        <input name="leVisiteur" type="hidden" value="<?php echo $idVisiteur; ?>">
+        <input name="leMois" type="hidden" value="<?php echo $leMois; ?>">
+        <button class="btn btn-info" onclick="return confirm('Voulez-vous valider les frais ?')"type="submit">Valider</button>
+    </form>
+    <form method="post" 
+          action="index.php?uc=validerFicheFrais&action=selectionnerVisiteur" 
+          role="form">
+        <button class="btn btn-success" type="submit">Annuler</button>
+    </form>
+    <br><br>                
+</div>    
