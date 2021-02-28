@@ -42,6 +42,5 @@ switch ($action) {
         $pdo->miseEnPaiement($idVisiteur, $mois);
         include 'vues/v_validation.php';
         include 'vues/v_accueil.php';
-        include 'vues/v_test.php';
         break;           
 }
