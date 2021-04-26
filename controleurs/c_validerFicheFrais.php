@@ -88,7 +88,7 @@ switch ($action) {
         $nouveauNbJustificatifs = filter_input(INPUT_POST, 'nouveauNbJustificatifs', FILTER_SANITIZE_STRING);
         if (estEntierPositif($nouveauNbJustificatifs)) {
             $pdo->majNbJustificatifs($idVisiteur, $leMois, $nouveauNbJustificatifs);
-            include 'vues/v_validation.php';
+            include 'vues/v_validationNbJustif.php';
         } else {
             ajouterErreur('Les valeurs des frais doivent être numériques');
             include 'vues/v_erreurs.php';

@@ -13,7 +13,7 @@
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://naseb3ef3.myqnapcloud.com:3307/gsb_frais</jdbc-url>
+      <jdbc-url>jdbc:mariadb://naseb3ef3.myqnapcloud.com:3308/gsb_frais</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2a57494d-cc1e-4e9b-8837-3612d60cff14" name="naseb3ef3" url="http://192.168.1.101/gsb">
+        <fileTransfer rootFolder="/gsb" accessType="FTPS" host="192.168.1.101" port="21">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+      <webServer id="fe2b0425-6616-4b0c-b3af-5e41db71ed2a" name="Ubuntuserver" url="http://192.168.1.103/gsb">
+        <fileTransfer rootFolder="/var/www/html/gsb" accessType="SFTP" host="192.168.1.103" port="22" sshConfigId="e16aba10-3254-494f-a738-962b0f059c43" sshConfig="olivieerr@192.168.1.103:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
