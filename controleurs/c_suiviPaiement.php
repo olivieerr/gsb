@@ -2,7 +2,7 @@
 
 /**
  * 
- * Page de gestion du suivi des remboursement
+ * Page de gestion du suivi des remboursements
  * 
  * PHP version 7.4
  * 

@@ -15,7 +15,6 @@
  */
 ?>
 <hr>
-<?php echo $idVisiteur . ' ' .$leMois; ?>
 <div class="panel panel-primary">
     <div class="panel-heading">Fiche de frais du mois 
         <?php echo $numMois . '-' . $numAnnee ?> : </div>
